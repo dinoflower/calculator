@@ -5,35 +5,65 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #2F4858;
 }
 
-.footer {
-    padding: 24px 0;
+:root {
+    font-size: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 h1 {
-    font-size: 2.75em;
+    font-size: 2.5rem;
     font-weight: 900;
-    color: #FFFFFF;
-    margin-bottom: .2em;
+    color: #FFFFFC;
+    margin: 1.5rem 0 .5rem 2rem;
+}
+
+.link {
+    font-size: 1rem;
+    color: #ACFCD9;
+    text-decoration: none;
+    margin: .75rem 1rem 0 0;
+}
+
+.link:hover,
+.link:focus {
+    color: #FFFFFC;
+}
+
+.link:active {
+    color: #FED766;
+}
+
+a:visited {
+    color: #A6E1FA;
+}
+
+.footer {
+    padding: 1.5rem 0;
+    background-color: #F26419;
 }
 
 .container {
-    background-color: #BCD3F2;
+    background-color: #ACFCD9;
     position: relative;
-    width: 50%;
+    width: 40%;
+    margin: 0 auto;
     box-sizing: border-box;
-    border-radius: .25em;
+    border-radius: .25rem;
 }
 
 .container:after {
     content: "";
     display: block;
-    padding-bottom: 56.25%;
+    padding-bottom: 75%;
 }
 
 .calculator {
@@ -42,36 +72,38 @@ h1 {
     height: 100%;
     display: flex;
     flex-direction: column;
+    gap: .5rem;
 }
 
 .top-bar {
-    flex-grow: 2.5;
-    margin: .5em;
+    flex-grow: 2.25;
+    margin: .5rem .5rem 0;
 }
 
 .output.box {
-    border: .08em solid #2F4858;
-    border-radius: .15em;
-    background-color: #FFFFFF;
+    border: .15rem solid #2F4858;
+    border-radius: .2rem;
+    background-color: #FFFFFC;
     height: 90%;
     color: #2F4858;
-    font-size: 2.1em;
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding-right: .3em;
 }
 
 .boxes {
-    margin: 0 .5em .5em;
+    margin: 0 .5rem .5rem;
     flex-grow: 3.5;
     display: flex;
-    gap: .5em;
+    gap: .5rem;
 }
 
 .pad {
     display: flex;
     flex-wrap: wrap;
-    gap: .25em;
+    gap: .25rem;
 }
 
 .number.pad {
@@ -84,42 +116,46 @@ h1 {
 
 .button {
     box-sizing: border-box;
-    background-color: #BCD3F2;
-    color: #2F4858;
-    border-radius: .375em;
+    background-color: #ACFCD9;
+    color: #2A404F;
+    border-radius: .275rem;
+    border: .15rem solid #33658A;
 }
 
 .number.pad .button {
     flex: 1 1 30%;
-    font-size: 2em;
-    border: .075em solid #33658A;
+    font-size: 2rem;
 }
 
 .operands.pad .button {
     flex: 1 1 45%;
-    font-size: 1.75em;
-    border: .1em solid #33658A;
-}
-
-#undo {
-    background-color: #F26419;
+    font-size: 1.75rem;
 }
 
 #clear {
-    background-color: #FED766;
+    background-color: #A6E1FA;
 }
 
 #equals {
-    background-color: #33658A;
-    color: #BCD3F2;
+    background-color: #A6E1FA;
+    font-size: 2rem;
 }
 
 .button:hover,
-.button:focus {
-    background-color: #33658A;
-    border: .1em solid #2F4858;
-    color: #FFFFFF;
+.button:focus,
+#clear:hover,
+#clear:focus,
+#equals:hover,
+#equals:focus {
+    background-color: #FED766;
     transition: .7s;
+}
+
+.button:active,
+#clear:active,
+#equals:active {
+    background-color: #F26419;
+    color:#FFFFFC;
 }
 
 /*alternate layout:
