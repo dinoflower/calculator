@@ -83,13 +83,13 @@ a:visited {
     gap: .5rem;
 }
 
-.output.box {
-    flex-grow: 6.5;
+.output-box {
     box-sizing: border-box;
-    border: .15rem solid #2F4858;
+    border: .15rem solid #33658A;
     border-radius: .2rem;
     background-color: #FFFFFC;
     height: 90%;
+    width: 85%;
     color: #2F4858;
     font-size: 2rem;
     display: flex;
@@ -101,8 +101,8 @@ a:visited {
 #clear {
     background-color: #FED766;
     font-size: 1.75rem;
-    flex-grow: 1;
     height: 90%;
+    width: 20%;
 }
 
 .boxes {
