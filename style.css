@@ -78,9 +78,14 @@ a:visited {
 .top-bar {
     flex-grow: 2.25;
     margin: .5rem .5rem 0;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 
 .output.box {
+    flex-grow: 6.5;
+    box-sizing: border-box;
     border: .15rem solid #2F4858;
     border-radius: .2rem;
     background-color: #FFFFFC;
@@ -90,7 +95,14 @@ a:visited {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: .3em;
+    padding-right: .5em;
+}
+
+#clear {
+    background-color: #FED766;
+    font-size: 1.75rem;
+    flex-grow: 1;
+    height: 90%;
 }
 
 .boxes {
@@ -132,22 +144,28 @@ a:visited {
     font-size: 1.75rem;
 }
 
-#clear {
-    background-color: #A6E1FA;
+#undo {
+    background-color: #FED766;
+    font-size: 2rem;
 }
 
 #equals {
     background-color: #A6E1FA;
-    font-size: 2rem;
 }
 
-.button:hover,
-.button:focus,
+.button:hover {
+    background-color: #99e2c3;
+    transition: .7s;
+}
+
+#equals:hover {
+    background-color: #8fc3da;
+    transition: .7s;
+}
+
 #clear:hover,
-#clear:focus,
-#equals:hover,
-#equals:focus {
-    background-color: #FED766;
+#undo:hover {
+    background-color: #e4c157;
     transition: .7s;
 }
 
