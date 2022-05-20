@@ -6,7 +6,6 @@
         <meta name="description" content="A calculator for all of your needs! *limited to adding, subtracting, multiplying, and dividing integers">
         <title>Calculator: Let's Calculate!</title>
         <link rel="stylesheet" href="style.css">
-        <script src="javascript.js"></script>
     </head>
     <body>
         <div class="header">
@@ -16,25 +15,27 @@
         <div class="container">
             <div class="calculator">
                 <div class="top-bar">
-                    <div class="output-box">0</div>
+                    <div class="output-box">
+                        <p class="text-content">|</p>
+                    </div>
                     <button class="button" ID="clear" data-key="46">Clear</button>
                 </div>
                 <div class="boxes">
-                    <div class="number pad">
-                        <button class="button" ID="seven" data-key="55">7</button>
-                        <button class="button" ID="eight" data-key="56">8</button>
-                        <button class="button" ID="nine" data-key="57">9</button>
-                        <button class="button" ID="four" data-key="52">4</button>
-                        <button class="button" ID="five" data-key="53">5</button>
-                        <button class="button" ID="six" data-key="54">6</button>
-                        <button class="button" ID="one" data-key="49">1</button>
-                        <button class="button" ID="two" data-key="50">2</button>
-                        <button class="button" ID="three" data-key="51">3</button>
-                        <button class="button" ID="decimal" data-key="190">.</button>
-                        <button class="button" ID="zero" data-key="48">0</button>
+                    <div class="number-pad">
+                        <button class="number" ID="7" data-key="55">7</button>
+                        <button class="number" ID="8" data-key="56">8</button>
+                        <button class="number" ID="9" data-key="57">9</button>
+                        <button class="number" ID="4" data-key="52">4</button>
+                        <button class="number" ID="5" data-key="53">5</button>
+                        <button class="number" ID="6" data-key="54">6</button>
+                        <button class="number" ID="1" data-key="49">1</button>
+                        <button class="number" ID="2" data-key="50">2</button>
+                        <button class="number" ID="3" data-key="51">3</button>
+                        <button class="button" ID="." data-key="190">.</button>
+                        <button class="number" ID="0" data-key="48">0</button>
                         <button class="button" ID="undo" data-key="8">Undo</button>
                     </div>
-                    <div class="operands pad">
+                    <div class="operands-pad">
                         <button class="button" ID="divide" data-key="191">÷</button>
                         <button class="button" ID="multiply" data-key="106">x</button>
                         <button class="button" ID="subtract" data-key="109">−</button>
@@ -45,5 +46,6 @@
             </div>
         </div>
         <div class="footer"></div>
+        <script src="javascript.js"></script>
     </body>
 </html>

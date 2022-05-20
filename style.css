@@ -98,6 +98,10 @@ a:visited {
     padding-right: .5em;
 }
 
+.text-content {
+    margin: 0;
+}
+
 #clear {
     background-color: #FED766;
     font-size: 1.75rem;
@@ -112,21 +116,22 @@ a:visited {
     gap: .5rem;
 }
 
-.pad {
+.number-pad,
+.operands-pad {
     display: flex;
     flex-wrap: wrap;
     gap: .25rem;
 }
 
-.number.pad {
+.number-pad {
     flex: 3;
 }
 
-.operands.pad {
+.operands-pad {
     flex: 2;
 }
 
-.button {
+button {
     box-sizing: border-box;
     background-color: #ACFCD9;
     color: #2A404F;
@@ -134,12 +139,12 @@ a:visited {
     border: .15rem solid #33658A;
 }
 
-.number.pad .button {
+.number-pad button {
     flex: 1 1 30%;
     font-size: 2rem;
 }
 
-.operands.pad .button {
+.operands-pad button {
     flex: 1 1 45%;
     font-size: 1.75rem;
 }
@@ -153,23 +158,23 @@ a:visited {
     background-color: #A6E1FA;
 }
 
-.button:hover {
+button:hover {
     background-color: #99e2c3;
-    transition: .7s;
+    transition: .5s;
 }
 
 #equals:hover {
     background-color: #8fc3da;
-    transition: .7s;
+    transition: .5s;
 }
 
 #clear:hover,
 #undo:hover {
     background-color: #e4c157;
-    transition: .7s;
+    transition: .5s;
 }
 
-.button:active,
+button:active,
 #clear:active,
 #equals:active {
     background-color: #F26419;
