@@ -13,8 +13,14 @@ function display(value) {
 
 function getInput(event) {
     let value = event.target.textContent;
-    display(value);
-    //array of objects? each object is a number/digit input so 1: a, 2: b - you can always just call the value of an object...
+    if (isNaN(value)) {
+        //... store operator to be called with "="
+        // indicate that display(value) should treat the next input as a new # (maybe go back to |?)
+        // store value of .text-content in array and perform operation if there's an existing value
+    }
+    else {
+        display(value);
+    }
 };
 
 //key = document.querySelector(`button[data-key="${event.keyCode}"]`);
@@ -57,6 +63,10 @@ function operate (operator, number, number) {
 
 const numBtns = Array.from(document.querySelectorAll(".number"));
 numBtns.forEach(numBtn => numBtn.addEventListener("click", getInput));
+const opBtns = Array.from(document.querySelector(".operand"));
+opBtns.forEach(opBtn => opBtn.addEventListener("click", getInput));
+//clear button should make the .text-content | again, empty the array, and un-store the operator
+//back button should remove the last [-1] character from .text-content with every click - upon removing the last one, should replace with |
 //window.addEventListener("keydown", detectButton);
 
 
