@@ -1,14 +1,13 @@
-let input;
-let key;
-
 function display(value) {
-    let output = document.querySelector(".text-content"); //apparently the text will count as a child of the box on its own so you don't need this step
+    let output = document.querySelector(".text-content");
     if(isNaN(output.textContent)) {
-        output.replaceWith(value);
+        firstDigit = document.createElement("p");
+        firstDigit.setAttribute("class", "text-content");
+        firstDigit.textContent = value;
+        output.replaceWith(firstDigit);
     }
     else {
-        newDigit = Document.createTextNode(value);
-        output.appendChild(newDigit);
+        output.appendChild(document.createTextNode(value));
     }
 };
 
@@ -18,8 +17,6 @@ function getInput(event) {
     //array of objects? each object is a number/digit input so 1: a, 2: b - you can always just call the value of an object...
 };
 
-//let displayedNum = document.createTextNode();
-//document.querySelector(".output-box");
 //key = document.querySelector(`button[data-key="${event.keyCode}"]`);
 
 
@@ -60,7 +57,7 @@ function operate (operator, number, number) {
 
 const numBtns = Array.from(document.querySelectorAll(".number"));
 numBtns.forEach(numBtn => numBtn.addEventListener("click", getInput));
-//window.addEventListener("keydown", getInput);
+//window.addEventListener("keydown", detectButton);
 
 
 
