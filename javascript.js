@@ -1,3 +1,5 @@
+let runningArray = [];
+
 function display(value) {
     let output = document.querySelector(".text-content");
     if(isNaN(output.textContent)) {
@@ -14,6 +16,13 @@ function display(value) {
 function getInput(event) {
     let value = event.target.textContent;
     if (isNaN(value)) {
+        //let operator = value; // ??
+        output = document.querySelector(".text-content");
+        runningArray.push(output);
+        text = document.createElement("p");
+        text.setAttribute("class", "text-content");
+        text.textContent = "|";
+        output.replaceWith(text);
         //... store operator to be called with "="
         // indicate that display(value) should treat the next input as a new # (maybe go back to |?)
         // store value of .text-content in array and perform operation if there's an existing value
@@ -23,7 +32,7 @@ function getInput(event) {
     }
 };
 
-//key = document.querySelector(`button[data-key="${event.keyCode}"]`);
+//key = document.querySelector(`button[data-key="${event.keyCode}"]`); <- can you do element.querySelector?
 
 
 function add (a, b) {
