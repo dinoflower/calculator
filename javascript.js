@@ -22,20 +22,22 @@ function getInput(event) {
         text = document.createElement("p");
         text.setAttribute("class", "text-content");
         runningArray.push(output.textContent);
-        operator = value;
         if (runningArray.length === 1) {
             text.textContent = "|";
             output.replaceWith(text);
+            operator = value;
             return operator;
         }
         else {
-            result = runningArray.reduceRight(operate);
-            text.textContent = result;
-            output.replaceWith(text);
-            while (runningArray.length > 0) {
+            let result = runningArray.reduceRight(function () {
+                return operate(operator, Number(runningArray[1]), Number(runningArray[0]))
+            });
+            while (runningArray.length !== 0) {
                 runningArray.shift();
             };
             runningArray.push(result);
+            text.textContent = result;
+            output.replaceWith(text);
         }
     }
     else {
@@ -74,7 +76,9 @@ function divide (a, b) {
     return a / b;
 };
 
-function operate (operator, number, number) {
+
+
+function operate (operator, number, number) { //the problem appears to be here
     switch (operator) {
         case "+":
             add(number, number);
@@ -99,6 +103,8 @@ const opBtns = Array.from(document.querySelectorAll(".operator"));
 opBtns.forEach(opBtn => opBtn.addEventListener("click", getInput));
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", clear);
+const eqlBtn = document.querySelector("#equals");
+eqlBtn.addEventListener("click", operate);
 
 //clear button should make the .text-content | again, empty the array, and un-store the operator
 //back button should remove the last [-1] character from .text-content with every click - upon removing the last one, should replace with |
