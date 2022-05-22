@@ -1,7 +1,9 @@
 let runningArray = [];
+let output;
+let operator;
 
 function display(value) {
-    let output = document.querySelector(".text-content");
+    output = document.querySelector(".text-content");
     if(isNaN(output.textContent)) {
         firstDigit = document.createElement("p");
         firstDigit.setAttribute("class", "text-content");
@@ -16,22 +18,43 @@ function display(value) {
 function getInput(event) {
     let value = event.target.textContent;
     if (isNaN(value)) {
-        //let operator = value; // ??
         output = document.querySelector(".text-content");
-        runningArray.push(output);
         text = document.createElement("p");
         text.setAttribute("class", "text-content");
-        text.textContent = "|";
-        output.replaceWith(text);
-        //... store operator to be called with "="
-        // indicate that display(value) should treat the next input as a new # (maybe go back to |?)
-        // store value of .text-content in array and perform operation if there's an existing value
+        runningArray.push(output.textContent);
+        operator = value;
+        if (runningArray.length === 1) {
+            text.textContent = "|";
+            output.replaceWith(text);
+            return operator;
+        }
+        else {
+            result = runningArray.reduceRight(operate);
+            text.textContent = result;
+            output.replaceWith(text);
+            while (runningArray.length > 0) {
+                runningArray.shift();
+            };
+            runningArray.push(result);
+        }
     }
     else {
         display(value);
     }
 };
 
+function clear() {
+    output = document.querySelector(".text-content");
+    text = document.createElement("p");
+    text.setAttribute("class", "text-content");
+    text.textContent = "|";
+    output.replaceWith(text);
+    runningArray = [];
+    operator = undefined;
+};
+
+
+// on enter - result = runningArray.reduceRight(operate); (or just make the operate function do this?)
 //key = document.querySelector(`button[data-key="${event.keyCode}"]`); <- can you do element.querySelector?
 
 
@@ -72,8 +95,11 @@ function operate (operator, number, number) {
 
 const numBtns = Array.from(document.querySelectorAll(".number"));
 numBtns.forEach(numBtn => numBtn.addEventListener("click", getInput));
-const opBtns = Array.from(document.querySelector(".operand"));
+const opBtns = Array.from(document.querySelectorAll(".operator"));
 opBtns.forEach(opBtn => opBtn.addEventListener("click", getInput));
+const clearBtn = document.querySelector("#clear");
+clearBtn.addEventListener("click", clear);
+
 //clear button should make the .text-content | again, empty the array, and un-store the operator
 //back button should remove the last [-1] character from .text-content with every click - upon removing the last one, should replace with |
 //window.addEventListener("keydown", detectButton);
