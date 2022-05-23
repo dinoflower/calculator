@@ -2,13 +2,17 @@ let runningArray = [];
 let output;
 let operator;
 
+function createText(content) {
+    text = document.createElement("p");
+    text.setAttribute("class", "text-content");
+    text.textContent = content;
+};
+
 function display(value) {
     output = document.querySelector(".text-content");
     if(isNaN(output.textContent)) {
-        firstDigit = document.createElement("p");
-        firstDigit.setAttribute("class", "text-content");
-        firstDigit.textContent = value;
-        output.replaceWith(firstDigit);
+        createText(value);
+        output.replaceWith(text);
     }
     else {
         output.appendChild(document.createTextNode(value));
@@ -19,25 +23,21 @@ function getInput(event) {
     let value = event.target.textContent;
     if (isNaN(value)) {
         output = document.querySelector(".text-content");
-        text = document.createElement("p");
-        text.setAttribute("class", "text-content");
-        runningArray.push(output.textContent);
+        arrayItem = Number(output.textContent);
+        runningArray.push(arrayItem);
         if (runningArray.length === 1) {
-            text.textContent = "|";
+            createText("|");
             output.replaceWith(text);
             operator = value;
             return operator;
         }
         else {
-            let result = runningArray.reduceRight(function () {
-                return operate(operator, Number(runningArray[1]), Number(runningArray[0]))
-            });
-            while (runningArray.length !== 0) {
-                runningArray.shift();
-            };
-            runningArray.push(result);
-            text.textContent = result;
+            let result = operate(operator, runningArray[runningArray.length-2], runningArray[runningArray.length-1]);
+            createText(result);
             output.replaceWith(text);
+            if (!(isNaN(result))) {
+                runningArray.push(result);
+            }
         }
     }
     else {
@@ -56,7 +56,6 @@ function clear() {
 };
 
 
-// on enter - result = runningArray.reduceRight(operate); (or just make the operate function do this?)
 //key = document.querySelector(`button[data-key="${event.keyCode}"]`); <- can you do element.querySelector?
 
 
@@ -73,40 +72,60 @@ function multiply (a, b) {
 };
 
 function divide (a, b) {
+    if (b === 0) {
+        return "A hollow voice says 'fool'";
+    }
     return a / b;
 };
 
+function doMath () {
+    //if (runningArray.length === 1) {
+    //    output = document.querySelector(".text-content");
+    //    arrayItem = Number(output.textContent);
+    //    text = document.createElement("p");
+    //    text.setAttribute("class", "text-content");
+    //    runningArray.push(arrayItem);
+    //}
+    //operate(operator, runningArray[runningArray.length-2], runningArray[runningArray.length-1]);
+    //if (!(isNaN(answer))) {
+    //    runningArray.push(answer);
+    //}
 
+}
 
-function operate (operator, number, number) { //the problem appears to be here
+function operate (operator, num1, num2) {
+    let answer;
     switch (operator) {
         case "+":
-            add(number, number);
+            answer = add(num1, num2);
             break;
         case "−":
-            subtract(number, number);
+            answer = subtract(num1, num2);
             break;
-        case "*":
-            multiply(number, number);
+        case "x":
+            answer = multiply(num1, num2);
             break;
-        case "/":
-            divide(number, number);
+        case "÷":
+            answer = divide(num1, num2);
             break;
         default:
-            return;
+            answer = "Nothing happens.";
     };
+    return answer;
 };
 
 const numBtns = Array.from(document.querySelectorAll(".number"));
 numBtns.forEach(numBtn => numBtn.addEventListener("click", getInput));
+
 const opBtns = Array.from(document.querySelectorAll(".operator"));
 opBtns.forEach(opBtn => opBtn.addEventListener("click", getInput));
+
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", clear);
-const eqlBtn = document.querySelector("#equals");
-eqlBtn.addEventListener("click", operate);
 
-//clear button should make the .text-content | again, empty the array, and un-store the operator
+const eqlBtn = document.querySelector("#equals");
+eqlBtn.addEventListener("click", doMath);
+
 //back button should remove the last [-1] character from .text-content with every click - upon removing the last one, should replace with |
 //window.addEventListener("keydown", detectButton);
 
