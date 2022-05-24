@@ -1,16 +1,15 @@
-let runningArray = [];
+let storedValue;
 let operator;
 let output;
 
 function doMath () {
-    if (runningArray.length >= 1 && operator !== undefined) {
+    if (storedValue !== undefined && operator !== undefined) {
         output = document.querySelector(".text-content");
-        arrayItem = Number(output.textContent);
-        runningArray.push(arrayItem);
-        let result = operate(operator, runningArray[runningArray.length-2], runningArray[runningArray.length-1]);
+        let result = operate(operator, storedValue, Number(output.textContent));
         createText(result);
         text.setAttribute("name", "noAppend");
         output.replaceWith(text);
+        storedValue = result;
     }
     operator = undefined;
 };
@@ -30,7 +29,7 @@ function clear() {
     output = document.querySelector(".text-content");
     createText("|");
     output.replaceWith(text);
-    runningArray = [];
+    storedValue = undefined;
     operator = undefined;
 };
 
@@ -57,21 +56,20 @@ function display(event) {
     }
 };
 
-//currently operators variables cause abrupt operation on previous array values with repeated getInput() calls
-
 function getInput(event) {
-    runningArray.push(Number((document.querySelector(".text-content")).textContent))
     let value = event.target.textContent;
     output = document.querySelector(".text-content");
-    if (runningArray.length === 1 || !operator) {
+    if (storedValue === undefined || operator === undefined) {
+        storedValue = Number(output.textContent);
         createText("|");
         output.replaceWith(text);
         operator = value;
         return operator;
     }
     else { 
-        let result = operate(operator, runningArray[runningArray.length-2], runningArray[runningArray.length-1]);
+        let result = operate(operator, storedValue, Number(output.textContent));
         createText(result);
+        storedValue = Number(text.textContent);
         text.setAttribute("name", "noAppend");
         output.replaceWith(text);
         operator = value;
@@ -97,7 +95,7 @@ function operate (operator, num1, num2) {
         default:
             answer = "Nothing happens.";
     };
-    return answer;
+    return Number.parseFloat(answer).toFixed(6);
 };
 
 function add (a, b) {
