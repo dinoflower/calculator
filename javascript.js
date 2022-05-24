@@ -44,8 +44,8 @@ function undo() {
     output.replaceWith(text);
 };
 
-function display(event) {
-    let value = event.target.textContent;
+function display(input) {
+    let value = input;
     output = document.querySelector(".text-content");
     if(Number(isNaN(output.textContent)) || (output.getAttribute("name") === "noAppend")) {
         createText(value);
@@ -56,8 +56,8 @@ function display(event) {
     }
 };
 
-function getInput(event) {
-    let value = event.target.textContent;
+function getInput(input) {
+    let value = input;
     output = document.querySelector(".text-content");
     if (storedValue === undefined || operator === undefined) {
         storedValue = Number(output.textContent);
@@ -95,7 +95,7 @@ function operate (operator, num1, num2) {
         default:
             answer = "Nothing happens.";
     };
-    return Number.parseFloat(answer).toFixed(6);
+    return answer;
 };
 
 function add (a, b) {
@@ -123,14 +123,11 @@ function createText(content) {
     text.textContent = content;
 };
 
-//key = document.querySelector(`button[data-key="${event.keyCode}"]`); <- can you do element.querySelector?
-
-
 const numBtns = Array.from(document.querySelectorAll(".number"));
-numBtns.forEach(numBtn => numBtn.addEventListener("click", display));
+numBtns.forEach(numBtn => numBtn.addEventListener("click", (e) => display(e.target.textContent)));
 
 const opBtns = Array.from(document.querySelectorAll(".operator"));
-opBtns.forEach(opBtn => opBtn.addEventListener("click", getInput));
+opBtns.forEach(opBtn => opBtn.addEventListener("click", (e) => getInput(e.target.textContent)));
 
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", clear);
@@ -143,5 +140,3 @@ undoBtn.addEventListener("click", undo);
 
 const decBtn = document.querySelector("#decimal");
 decBtn.addEventListener("click", addPoint);
-
-//window.addEventListener("keydown", detectButton);

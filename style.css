@@ -180,25 +180,3 @@ button:active,
     background-color: #F26419;
     color:#FFFFFC;
 }
-
-/*alternate layout:
-
-.pad {
-    flex: 1;
-}
-
-.operands.pad .button {
-    flex: 1 1 20%;
-}
-
-#undo,
-#clear {
-    flex: 1 1 45%;
-}*/
-
-
-/*#BCD3F2 Light Steel Blue - buttons
-#33658A Queen Blue - clear or "="
-#2F4858 Charcoal - background
-#FED766 Orange Yellow Crayola - clear or "=" button
-#F26419 Orange Red - undo button*/
