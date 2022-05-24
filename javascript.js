@@ -117,8 +117,6 @@ function divide (a, b) {
     return a / b;
 };
 
-//remember to implement rounding
-
 function createText(content) {
     text = document.createElement("p");
     text.setAttribute("class", "text-content");
